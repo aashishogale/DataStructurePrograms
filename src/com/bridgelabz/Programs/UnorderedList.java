@@ -6,9 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import com.bridgelabz.Utility.Util;
+import com.bridgelabz.Utility.ListImpl;
 
 public class UnorderedList {
+	static ListImpl list=new ListImpl();
 	public static void main(String args[]) {
 		
 	String str,name;
@@ -25,22 +26,23 @@ public class UnorderedList {
 				new FileReader("/home/bridgeit" + "/Desktop/test.txt"));
 		str = breader.readLine();
 		String[] array = str.split(",");
-		Util.addUnoString(array);
+		list.addUnoString(array);
 		do {
 			System.out.println("enter the word");
 			
 			name=sc.nextLine();
-			count=Util.addList(name);
-			//Util.showCurrentList();
+			count=list.addList(name);
+			//list.showCurrentList();
 			System.out.println("do you want to continue");
 			next=sc.nextLine().charAt(0);
 			//System.out
 			
 					
 		} while(next!='n');
-		Util.showCurrentList();
+		//list.showCurrentList();
 		String []sarray=new String[count];
-		Util.getList(sarray,count);
+		list.getList(sarray,count);
+		sc.close();
 	
 	} catch (FileNotFoundException e) {
 		// TODO Auto-generated catch block
