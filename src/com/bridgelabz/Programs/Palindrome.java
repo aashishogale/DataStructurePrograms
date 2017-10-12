@@ -7,29 +7,34 @@ import com.bridgelabz.Utility.ListImpl;
 public class Palindrome {
 	
 	static int count;
-	static ListImpl list=new ListImpl();
-	public  static void enqueue(String letter) {
+	Queue<String> queue= new Queue<>();
+	public   void add(String letter) {
 	
-		list.addFirst(letter);
+		queue.enqueue(letter);
+		
 		count++;
+		System.out.println(count);
 		
 		}
-	public static String dequeue() {
+	public  String get() {
 		String str="";
 		for(int i=0;i<count;i++) {
 		
-		str=str+(String)list.deleteAtFirst();
-		//System.out.println(str);
+		str=str+(String)queue.removeRear();
+		
 		}
 
 		
 		return str;
 	}
-	
+	public int size() {
+		return queue.size();
+	}
 
 	
 	
 	public static void main(String args[]) {
+		Palindrome check=new Palindrome();
 		Scanner sc=new Scanner(System.in);
 		System.out.println("enter the string");
 		String original=sc.nextLine();
@@ -37,10 +42,10 @@ public class Palindrome {
 		String []array=original.split("(?!^)");
 		String palindrome="";
  for(int i=0;i<array.length;i++) {
-	 enqueue(array[i]);
+	 check.add(array[i]);
  }
-		
-		palindrome=dequeue();
+		//System.out.println("queue size"+check.size());
+		palindrome=check.get();
 		System.out.println(palindrome);
 		if(original.equals(palindrome)) {
 			System.out.println("it is a palindrome");

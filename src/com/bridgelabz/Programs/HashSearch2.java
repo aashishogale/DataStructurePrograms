@@ -11,25 +11,25 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import com.bridgelabz.Utility.SinglyLinkedListImpl;
-public class HashSearch {
-	public static void main(String args[]) {
-	HashSearch hash=new HashSearch();
+public class HashSearch2{
+	public static   void main(String args[]) {
+	HashSearch2 hash=new HashSearch2();
 	Scanner sc=new Scanner(System.in);
 	
 	
 	String filepath="/home/bridgeit" + "/Desktop/orderedtest.txt";
 	String []number=hash.addFromFile(filepath);
-	//LinkedList<Integer> slist= new LinkedList<Integer>();
 	
-	HashMap<Integer,LinkedList<Integer>> map=new HashMap<>();
+	
+	HashMap<Integer,SinglyLinkedListImpl<Integer>> map=new HashMap<>();
 	
 	for(int i=0;i<11;i++){
-		map.put(i, new LinkedList<>());
+		map.put(i, new SinglyLinkedListImpl<Integer>());
 	}
 	
 	for(int i=0;i<number.length;i++){
 		int  numberToAdd=Integer.parseInt(number[i]);
-		System.out.println(number[i]);
+		//System.out.println(numberToAdd);
 		map.get(numberToAdd%11).add(numberToAdd);
 	
 	}
@@ -38,21 +38,21 @@ public class HashSearch {
 	int search=sc.nextInt();
 	if(hash.findNumber(map,search)){
 		System.out.println("Number is present");
-		int index=map.get(search%11).indexOf(search);
-		map.get(search%11).remove(index);
+		int index=map.get(search%11).returnPos(search);
+		map.get(search%11).deleteAt(index);
 	}else{
 		map.get(search%11).add(search);
 		System.out.println("Number Added to the file");
 	}
 
 	String file="/home/bridgeit/Desktop/newfile.txt";
-	System.out.println(map.get(1));
+	System.out.println(map.get(2));
 	hash.writeInFile(map, file);
 	
 
 }
-public boolean findNumber(HashMap<Integer,LinkedList<Integer>> map, int number) {
-		 if(map.get(number%11).indexOf(number)==-1) {
+public boolean findNumber(HashMap<Integer,SinglyLinkedListImpl<Integer>> map, int number) {
+		 if(map.get(number%11).returnPos(number)!=-1) {
 			 return false;
 			 
 		 }
@@ -85,14 +85,14 @@ public String[] addFromFile(String filePath) {
 
 }
 
-public  void writeInFile(HashMap<Integer,LinkedList<Integer>> map, String file){
+public  void writeInFile(HashMap<Integer,SinglyLinkedListImpl<Integer>> map, String file){
 	String array[]={};
 	ArrayList<String> list=new ArrayList<String>();
 	for(int i=0;i<map.size();i++){
 		int j=0;
 		while(j<map.get(i).size()){
-			System.out.println(map.get(i).get(j));
-			list.add(map.get(i).get(j)+" ");
+			//System.out.println(map.get(i).get(j));
+			list.add(map.get(i).returnItem(j)+" ");
 			j++;
 		}
 		list.add("\n");

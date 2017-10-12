@@ -3,11 +3,12 @@ package com.bridgelabz.Programs;
 import java.util.Scanner;
 
 import com.bridgelabz.Utility.ListImpl;
+import com.bridgelabz.Utility.SinglyLinkedListImpl;
 
-public class Queue {
+public class Queue<T> {
 	static int totalcash,noofpeople;
-	static ListImpl list=new ListImpl<Integer>();
-	public static void enqueue(int amount,char action,String person) {
+	 SinglyLinkedListImpl<T> list=new SinglyLinkedListImpl<>();
+	public  void addPerson(int amount,char action,T person) {
 		if(action=='d'){
 		totalcash=totalcash+amount;
 		list.add(person);
@@ -24,15 +25,29 @@ public class Queue {
 			
 		}
 	}
-	public static  void dequeue() {
-		list.deleteAtFirst();
+	public void enqueue(T element) {
+		list.add(element);
 	}
+	public   T dequeue() {
+		return(list.deleteFirst());
+	}
+	public T removeRear() {
+		//System.out.println(list.deleteLast1());
+		return(list.deleteLast());
+	}
+	public void display() {
+		list.view();
+	}
+	public int size() {
+		return(list.size());
+	}
+	
 	public static void main(String args[]) {
 		char action;
 		String person;
 		Scanner sc=new Scanner(System.in);
 		int amount;
-		
+		Queue<String> queue=new Queue<String>();
 		do
 		{
 			System.out.println("enter if you want to enque or dequeue");
@@ -44,11 +59,11 @@ public class Queue {
 				amount=Integer.parseInt(sc.nextLine());
 				System.out.println("do you want to withdraw or deposit");
 				action=sc.nextLine().charAt(0);
-				Queue.enqueue(amount, action, person);
+				queue.addPerson(amount, action, person);
 				
 			}
 			else if(action=='d') {
-				Queue.dequeue();
+				queue.dequeue();
 				
 			}
 			else {
@@ -61,7 +76,7 @@ public class Queue {
 			
 		}while(action!='n');
 		String []array=new String[noofpeople];
-		list.getList(array, noofpeople);
+	queue.display();
 		
 	}
 

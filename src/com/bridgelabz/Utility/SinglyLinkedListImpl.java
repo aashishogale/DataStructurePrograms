@@ -3,12 +3,13 @@ package com.bridgelabz.Utility;
 public class SinglyLinkedListImpl<T> {
 	Node<T> head;
 	Node<T> tail;
+	static int count;
 
 	public void add(T element) {
 
 		Node<T> nd = new Node<T>();
 		nd.setValue(element);
-		System.out.println("Adding: " + element);
+		//System.out.println("Adding: " + element);
 
 		if (head == null) {
 
@@ -22,6 +23,8 @@ public class SinglyLinkedListImpl<T> {
 		}
 	}
 
+	
+
 	public void addFirst(T element) {
 
 		Node<T> tmp = head;
@@ -31,6 +34,25 @@ public class SinglyLinkedListImpl<T> {
 
 		head = refNode;
 
+	}
+
+	public void view() {
+		Node<T> tmp = new Node<T>();
+		tmp = head;
+		while (true) {
+			if (tmp == null) {
+				break;
+			}
+			System.out.println(tmp.getValue());
+
+			if (tmp.getNextRef() == null) {
+				System.out.println("reached the end of file");
+				return;
+			}
+			tmp = tmp.getNextRef();
+
+		}
+		System.out.println("List empty");
 	}
 
 	public int checkEmpty() {
@@ -45,36 +67,88 @@ public class SinglyLinkedListImpl<T> {
 
 		Node<T> tmp = head;
 		Node<T> refNode = new Node<T>();
-		
 
-			refNode = tmp;
-			tmp = tmp.getNextRef();
+		refNode = tmp;
+		tmp = tmp.getNextRef();
 
-			head = tmp;
-			System.out.println(refNode.getValue());
-			return refNode.getValue();
-
-		
-	
+		head = tmp;
+		System.out.println(refNode.getValue());
+		return refNode.getValue();
 
 	}
-	
-	
 
 	public T deleteLast() {
-		Node<T> refNode = new Node<T>();
-		Node<T> tmp1 = new Node<T>();
-		refNode = tail;
-		tmp1.setNextRef(null);
-		tail = tmp1;
-		System.out.println(refNode.getValue());
-		return  refNode.getValue();
+
+		return deleteAt(this.size() - 1);
+
+	}
+
+	public T deleteAt(int pos) {
+		Node<T> tmp = head;
+		Node<T> refNode = head;
+		Node<T> next = null;
+		Node<T> prev = null;
+		int count = 0;
+		while (true) {
+			if (tmp == null) {
+
+				break;
+			}
+
+			if (count == pos && tmp != head) {
+
+				refNode = tmp;
+
+				break;
+			}
+
+			prev = tmp;
+
+			tmp = tmp.getNextRef();
+
+			count++;
+
+		}
+
+		if (refNode != null) {
+
+			if (refNode == head) {
+				T value = refNode.getValue();
+				tmp = refNode.getNextRef();
+
+				head = tmp;
+				System.out.println("head" + value);
+				return value;
+			}
+
+			else if (refNode.getNextRef() == null) {
+
+				Node<T> tmp1 = new Node<T>();
+				refNode = tail;
+				T value = refNode.getValue();
+				tmp1 = prev;
+				tmp1.setNextRef(null);
+				tail = tmp1;
+				System.out.println("deleted tail value" + value);
+				return value;
+			} else {
+				next = tmp.getNextRef();
+				prev.setNextRef(next);
+
+				return tmp.getValue();
+
+			}
+		}
+
+		else {
+			return null;
+		}
 
 	}
 
 	public T deleteElement(T element) {
 		Node<T> tmp = head;
-		Node<T> refNode = null;
+		Node<T> refNode = head;
 		Node<T> next = null;
 		Node<T> prev = null;
 
@@ -84,11 +158,9 @@ public class SinglyLinkedListImpl<T> {
 				break;
 			}
 
-			if (element.equals(tmp.getValue())&&tmp!=head) {
+			if (element.equals(tmp.getValue()) && tmp != head) {
 
 				refNode = tmp;
-				
-				//next = tmp.getNextRef();
 
 				break;
 			}
@@ -97,31 +169,34 @@ public class SinglyLinkedListImpl<T> {
 
 			tmp = tmp.getNextRef();
 
-		
-
 		}
 
 		if (refNode != null) {
 
 			if (refNode == head) {
-
-				tmp = tmp.getNextRef();
+				T value = refNode.getValue();
+				tmp = refNode.getNextRef();
 
 				head = tmp;
-				return  refNode.getValue();
+				System.out.println("head" + value);
+				return value;
 			}
 
 			else if (refNode.getNextRef() == null) {
 
 				Node<T> tmp1 = new Node<T>();
+				refNode = tail;
+				T value = refNode.getValue();
 				tmp1 = prev;
 				tmp1.setNextRef(null);
 				tail = tmp1;
-				return  prev.getValue();
+				System.out.println("deleted tail value" + value);
+				return value;
 			} else {
 				next = tmp.getNextRef();
 				prev.setNextRef(next);
-				return  tmp.getValue();
+
+				return tmp.getValue();
 
 			}
 		}
@@ -129,7 +204,6 @@ public class SinglyLinkedListImpl<T> {
 		else {
 			return null;
 		}
-		
 
 	}
 
@@ -142,7 +216,7 @@ public class SinglyLinkedListImpl<T> {
 		int i = 0;
 
 		while (true) {
-			
+
 			if (pos == 0) {
 				addFirst(number);
 				break;
@@ -213,8 +287,9 @@ public class SinglyLinkedListImpl<T> {
 
 			}
 
-			if (tmp.getValue().equals(element))
+			if (tmp.getValue().equals(element)) {
 				return 0;
+			}
 
 			tmp = tmp.getNextRef();
 		}
@@ -234,7 +309,7 @@ public class SinglyLinkedListImpl<T> {
 			if (tmp == null) {
 				break;
 			}
-			//System.out.println(tmp.getValue());
+			// System.out.println(tmp.getValue());
 
 			array[i] = tmp.getValue().toString();
 			i++;
@@ -242,20 +317,24 @@ public class SinglyLinkedListImpl<T> {
 			tmp = tmp.getNextRef();
 		}
 	}
-public T returnItem(int pos) {
-	Node<T> tmp=head;
-	int count=0;
-	while(true) {
-		if(tmp==null) {
-			break;
+
+	public T returnItem(int pos) {
+		Node<T> tmp = head;
+		int count = 0;
+		while (true) {
+			if (tmp == null) {
+				return null;
+			}
+			if (count == pos) {
+				System.out.println("value" + tmp.getValue());
+				return tmp.getValue();
+			}
+			tmp = tmp.getNextRef();
+			count++;
 		}
-		if(count==pos){
-			return tmp.getValue();
-		}
+
 	}
-	return null;
-	
-}
+
 	public int returnPos(T element) {
 		Node<T> tmp = head;
 
@@ -289,17 +368,29 @@ public T returnItem(int pos) {
 
 	public int size() {
 		// TODO Auto-generated method stub
-		
-		Node<T> tmp=head;
-		int count =0;
-		while(true)
-			if(tmp==null)
-			{
-				return 0;
+
+		Node<T> tmp = head;
+		int count = 0;
+		while (true) {
+			if (tmp == null) {
+				break;
 			}
+
+			if (tmp.getNextRef() == null) {
+				count++;
+				break;
+			}
+
 			else {
-				return count;
+
+				count++;
+				tmp = tmp.getNextRef();
+				// System.out.println("currentNode value"+tmp.getValue());
 			}
+
+		}
+		//System.out.println("size in method" + count);
+		return count;
 	}
 }
 
@@ -325,5 +416,3 @@ class Node<T> {
 	}
 
 }
-
-

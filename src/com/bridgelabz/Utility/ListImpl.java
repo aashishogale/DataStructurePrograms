@@ -84,7 +84,7 @@ public class ListImpl<T> {
 
 			count++;
 
-		} else {
+		} else if(olist.traverse(number) == 0){
 			olist.deleteElement(number);
 			count--;
 
