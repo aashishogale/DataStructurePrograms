@@ -13,10 +13,6 @@ public class WeekDay {
 	
 
 
-	@Override
-	public String toString() {
-		return date;
-	}
 
 
 

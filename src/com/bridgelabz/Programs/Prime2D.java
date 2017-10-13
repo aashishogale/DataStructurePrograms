@@ -16,6 +16,7 @@ public class Prime2D {
 			array[row][0]=rangeNo;
 			row++;
 		}
+	
 		int range=100;
 		 row=0;
 		for(int i=1;i<1000;i++) {
@@ -24,7 +25,7 @@ public class Prime2D {
 				
 				 if(i<=range)
 				{
-					array[row][j++]=i;
+					array[row][++j]=i;
 				}
 				else {
 					j=1;

@@ -132,4 +132,103 @@ public class Util {
 		} // End of for loop
 		return true;
 	}
+	public static boolean checkAnagram(int number1, int number2) {
+
+		int count1 = numberCount(number1);
+		int count2 = numberCount(number2);
+		int count = 0;
+
+		if (count1 != count2)
+			return false;
+
+		// convert the numbers to array
+		int arr1[] = new int[count1];
+		int arr2[] = new int[count2];
+
+		convertIntArray(arr1, number1);
+		convertIntArray(arr2, number2);
+
+		// Sort the integer
+		arr1 = sortInt(arr1);
+		arr2 = sortInt(arr2);
+
+		// check if digits are equal
+		for (int i = 0; i < arr1.length; i++) {
+			if (arr1[i] == arr2[i]) {
+				count++;
+			}
+		}
+		return count == arr1.length;
+
+	}
+	public static void convertIntArray(int[] array, int number) {
+		int i = 0;
+
+		while (number != 0) {
+			array[i] = number % 10;
+			number = number / 10;
+			i++;
+		}
+
+	}
+
+public static int numberCount(int number) {
+	int count = 0;
+	int tempno = number;
+
+	// find the number of digits of first number
+	while (tempno != 0) {
+		tempno = tempno / 10;
+		count++;
+
+	}
+	return count;
+
+}
+public static int[] sortInt(int[] array) {
+	int temp;
+
+	for (int i = 0; i < array.length; i++) {
+		for (int j = 1; j < array.length - i; j++) {
+			if (array[j - 1] > array[j]) {
+				temp = array[j - 1];
+				array[j - 1] = array[j];
+				array[j] = temp;
+			}
+		}
+	}
+
+	return array;
+}
+
+
+public static int removeDuplicates(int arr[], int n)
+{
+    // Return, if array is empty
+    // or contains a single element
+    if (n==0 || n==1)
+        return n;
+ 
+    int[] temp = new int[n];
+    
+    // Start traversing elements
+    int j = 0;
+    for (int i=0; i<n-1; i++)
+        // If current element is not equal
+        // to next element then store that
+        // current element
+        if (arr[i] != arr[i+1])
+            temp[j++] = arr[i];
+    
+    // Store the last element as whether
+    // it is unique or repeated, it hasn't
+    // stored previously
+    temp[j++] = arr[n-1];   
+    
+    // Modify original array
+    for (int i=0; i<j; i++)
+        arr[i] = temp[i];
+ 
+    return j;
+}
 }

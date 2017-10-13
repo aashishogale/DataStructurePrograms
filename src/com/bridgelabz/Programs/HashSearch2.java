@@ -38,7 +38,7 @@ public class HashSearch2{
 	int search=sc.nextInt();
 	if(hash.findNumber(map,search)){
 		System.out.println("Number is present");
-		int index=map.get(search%11).returnPos(search);
+		int index=map.get(search%11).findIndex(search);
 		map.get(search%11).deleteAt(index);
 	}else{
 		map.get(search%11).add(search);
@@ -46,17 +46,17 @@ public class HashSearch2{
 	}
 
 	String file="/home/bridgeit/Desktop/newfile.txt";
-	System.out.println(map.get(2));
+
 	hash.writeInFile(map, file);
 	
 
 }
 public boolean findNumber(HashMap<Integer,SinglyLinkedListImpl<Integer>> map, int number) {
-		 if(map.get(number%11).returnPos(number)!=-1) {
-			 return false;
+		 if(map.get(number%11).traverse(number)==0) {
+			 return true;
 			 
 		 }
-		 return true;
+		 return false;
 }
 
 public String[] addFromFile(String filePath) {

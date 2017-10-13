@@ -72,7 +72,7 @@ public class SinglyLinkedListImpl<T> {
 		tmp = tmp.getNextRef();
 
 		head = tmp;
-		System.out.println(refNode.getValue());
+		//System.out.println(refNode.getValue());
 		return refNode.getValue();
 
 	}
@@ -277,7 +277,7 @@ public class SinglyLinkedListImpl<T> {
 
 	public int traverse(T element) {
 		Node<T> tmp = head;
-		int i = 0;
+		
 		int flag = 0;
 
 		while (true) {
@@ -335,6 +335,7 @@ public class SinglyLinkedListImpl<T> {
 
 	}
 
+
 	public int returnPos(T element) {
 		Node<T> tmp = head;
 
@@ -360,7 +361,40 @@ public class SinglyLinkedListImpl<T> {
 			i++;
 		}
 		if (flag == 1) {
-			return 0;
+			return -1;
+		}
+		return -1;
+
+	}
+
+	
+	
+	public int findIndex(T element) {
+		Node<T> tmp = head;
+
+		int i = 0;
+		int flag = 0;
+	
+
+		while (true) {
+			if (tmp == null) {
+				flag = 1;
+				break;
+
+			}
+
+			
+			if (tmp.getValue().equals(element)) {
+				return i;
+
+			}
+
+			tmp = tmp.getNextRef();
+
+			i++;
+		}
+		if (flag == 1) {
+			return -1;
 		}
 		return -1;
 
@@ -392,6 +426,7 @@ public class SinglyLinkedListImpl<T> {
 		//System.out.println("size in method" + count);
 		return count;
 	}
+
 }
 
 class Node<T> {

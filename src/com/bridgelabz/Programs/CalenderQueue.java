@@ -1,5 +1,6 @@
 package com.bridgelabz.Programs;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import com.bridgelabz.Utility.SinglyLinkedListImpl;
@@ -10,27 +11,31 @@ public class CalenderQueue {
 		CalenderQueue cqueue=new CalenderQueue();
 		Scanner scanner=new Scanner(System.in);
 		String daysOfWeek[]={ "S", "M", "T", "W", "Th", "F", "Sa" };
-		Queue weekQueue=new Queue<>();
+		Queue<Queue<String>> weekQueue=new Queue<Queue<String>>();
 		Stack weekStack=new Stack<>();
 		Stack monthStack=new Stack<>();
 		
-		Queue week;
+		Queue<String> week;
 		System.out.println("Enter month and year");
 		int month=scanner.nextInt();
 		int year=scanner.nextInt();
 		String calender[][]=new String[7][7];
 		Util.storeArray(calender, month, year);
+		
 		for(int i=1;i<calender.length;i++){
-			week =new Queue<WeekDay>();
+			week =new Queue<String>();
 			for(int j=0;j<calender[i].length;j++){
-				WeekDay day=new WeekDay();
-				day.date=calender[i][j];
-				day.day=daysOfWeek[j];
-				week.enqueue(day);
+				//WeekDay day=new WeekDay(daysOfWeek[j],calender[i][j]);
+			
+				//day.date=calender[i][j];
+				//day.day=daysOfWeek[j];
+				week.enqueue(calender[i][j]);
 			}
+			
 			weekQueue.enqueue(week);
 			weekStack.push(week);
 		}
+		//System.out.println(day.toString());
 		monthStack.push(weekQueue);
 		cqueue.displayQueue(weekQueue);
 	}
@@ -44,11 +49,15 @@ public class CalenderQueue {
 		System.out.println();
 		int weekQueueSize=weekQueue.size();
 		for(int i=0;i<weekQueueSize;i++){
-			Queue week =(Queue) weekQueue.dequeue();
+			Queue<String> week =(Queue) weekQueue.dequeue();
 			int weekSize=week.size();
+			
 			for(int j=0;j<weekSize;j++){
-				WeekDay day=(WeekDay) week.dequeue();
-				date=day.toString();
+				
+				date= week.dequeue();
+				//String str=day.date;
+				//String adate=str.replaceAll(day.toString(),"");
+				//System.out.println(day.toString());
 				System.out.print(date+"\t");
 			}
 			System.out.println();

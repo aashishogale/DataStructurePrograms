@@ -28,6 +28,12 @@ public class Queue<T> {
 	public void enqueue(T element) {
 		list.add(element);
 	}
+	public void enqueueDistinct(T element) {
+		if(list.traverse(element)!=0)
+		list.add(element);
+		else
+			return;
+	}
 	public   T dequeue() {
 		return(list.deleteFirst());
 	}

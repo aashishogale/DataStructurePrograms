@@ -9,17 +9,25 @@ public class Stack<T> {
 	public  void push(T element) {
 		list.addFirst(element);
 	}
-	public void pop(T element) {
+	public T pop() {
 		if(list.checkEmpty()==1) {
-			list.deleteFirst();
+			return(list.deleteFirst());
 		}
-		else
-		{
-			list.addFirst(element);
+		else {
+			return null;
 		}
+		
 	}
 	public  int  isEmpty() {
 		 return list.checkEmpty();
+	}
+	public void pushDistinct(T element) {
+		if(list.traverse(element)!=0) {
+			list.addFirst(element);
+		}
+		else {
+			return;
+		}
 	}
 	
 	public static void main(String args[]) {
@@ -35,7 +43,7 @@ public class Stack<T> {
 				expression.push(array[i]);
 			}
 		   if(array[i].equals(")")) {
-			   expression.pop(array[i]);
+			   expression.pop();
 			   
 		   }
 			
