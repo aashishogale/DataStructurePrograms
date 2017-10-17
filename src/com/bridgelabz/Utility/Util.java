@@ -1,234 +1,346 @@
 package com.bridgelabz.Utility;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import com.bridgelabz.Programs.Queue;
+
 public class Util {
-	public static long possibleCombinations(int totalNodes){
-		long possibleTrees=0;
-		int count=0;
-		if(totalNodes==1||totalNodes==0)
-			return 1;
-		else {
-			
-			while(count<totalNodes) {
-				count++;
-				possibleTrees=possibleTrees+possibleCombinations((int)count-1)*possibleCombinations((int)totalNodes-count);
-			}
-			return possibleTrees;
-}
+	static Scanner sc =new Scanner(System.in);
+	static Random random;
+	static  int array[]=new int[52];
+	static String addressbooks="/home/bridgeit/Desktop/addressbook.json";
 
-}
-	public static int dayOfWeek(int mYear,int mMonth){
+	public static String[] readFile(String filePath) {
+		String words[] = {};
+		ArrayList<String> lines = new ArrayList<String>();
+		String line, temp[] = {};
+		BufferedReader bufferedReader;
+		FileReader file;
+		int index = 0;
+		try {
+			file = new FileReader(filePath);
+			bufferedReader = new BufferedReader(file);
+			while ((line = bufferedReader.readLine()) != null) {
+				temp = line.split(",|\\s");
+				for (int i = 0; i < temp.length; i++) {
+					lines.add(temp[i]);
 
-        int mDay = 1;
-
-        //Calculate the date fall on
-        int y = mYear - (14 - mMonth) / 12;
-        int x = y + y / 4 - y / 100 + y / 400;
-        int m = mMonth + 12 * x * ((14 - mMonth) / 12) - 2;
-        int d = (mDay + x + 31 * m / 12) % 7;
-
-        //returns falllon date
-        return d;
-    }
-
-   public static boolean isLeapOrNot(int mYear){
-        boolean mIsLeap = false;
-        if( mYear >= 1582 ) {
-            mIsLeap = (mYear % 4) == 0;
-            mIsLeap = mIsLeap && (mYear % 100) != 0;
-            mIsLeap = mIsLeap || (mYear % 400) == 0;
-        }
-        if( mIsLeap == true )
-            return mIsLeap;
-        else
-            return mIsLeap;
-
-    }
-   public static void storeArray(String[][] daysArray, int month, int year) {
-		// TODO Auto-generated method stub
-	   String weekDays[] = { "Sun", "Mon", "Tue", "Wed", "Th", "Fri", "Sat" };
-		int daysInMonth[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-		int dayCount = 1;
-		
-		int startDay = dayOfWeek(year, month);
-		int j = 0;
-		if (isLeapOrNot(year)) {
-			daysInMonth[2] = 29;
-		}
-		for (int i = 0; i < 7; i++) {
-			daysArray[j][i] = weekDays[i];
-		}
- System.out.println(startDay);
-		for (int i = 1; i < 7; i++) {
-			for (j = 0; j < 7; j++)
-				if (startDay >= dayCount) {
-					daysArray[i][j] = " ";
-					startDay--;
-
-				} else if (dayCount <= daysInMonth[month]) {
-					daysArray[i][j] = String.valueOf(dayCount);
-					dayCount++;
-				} else {
-					daysArray[i][j] = " ";
 				}
-		}
-}
-
-  public  static void displayCal(int mYear,int mMonth){
-        int date = dayOfWeek(mYear,mMonth);
-        System.out.println(date);
-        int mNumber = 1;
-        int counter = 0;
-        String[] months = {"","January","February","March",
-                            "April","May","Jun","July",
-                            "August","September","Octomber",
-                            "November","December"};
-
-        int[] mMonthsNOLeap = {0,31,28,31,30,31,30,31,31,30,31,30,31};
-
-        boolean isLeap = isLeapOrNot(mYear);
-        if(isLeap == true) {
-            mMonthsNOLeap[2] = 29;
-        }
-
-        int i = mMonth;
-        System.out.println("   "+months[i] + "   " + mYear);
-        System.out.println("=====================");
-        System.out.println("S  M  T  W  T  F  S");
-        System.out.println("====================");
-        for(int k = 0; k < 6; k++ ){
-            for(int j = 0; j < 7; j++ ){
-                if(counter < date){
-                    System.out.print("   ");
-                    counter++;
-                }
-                else if(mNumber <= mMonthsNOLeap[mMonth]) {
-                    System.out.print(mNumber);
-                    mNumber++;
-                    if(mNumber < 11)
-                        System.out.print("  ");
-                    else
-                        System.out.print(" ");
-                }
-            }
-            System.out.println();
-        }
-
-}
-  public static boolean checkPrime(int number) {
-
-		// condition to check if no less than two
-		if (number < 2) {
-			return false;
-		}
-
-		// for loop to for checkin prime no
-		for (int factor = 2; factor * factor <= number; factor++) {
-			// if factor divides evenly into n, n is not prime, so break out of
-			// loop
-			if (number % factor == 0) {
-				return false;
-
 			}
-		} // End of for loop
-		return true;
+			words = lines.toArray(new String[lines.size()]);
+			bufferedReader.close();
+		}  catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return words;
 	}
-	public static boolean checkAnagram(int number1, int number2) {
 
-		int count1 = numberCount(number1);
-		int count2 = numberCount(number2);
-		int count = 0;
+	/** This method appends word on filePath
+	 * @param word
+	 * @param filePath
+	 *           
+	 */
+	public static void appendFile(String word, String filePath) {
 
-		if (count1 != count2)
-			return false;
+		try {
+			FileWriter writer = new FileWriter(filePath, false);
+			PrintWriter out = new PrintWriter(writer);
+			out.println(word);
+			out.close();
+			writer.close();
+		} catch (FileNotFoundException e) {
 
-		// convert the numbers to array
-		int arr1[] = new int[count1];
-		int arr2[] = new int[count2];
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-		convertIntArray(arr1, number1);
-		convertIntArray(arr2, number2);
+	/**This method write given string on given filePath
+	 * @param word     -Array of String to write
+	 * @param filePath -File path with file name
+	 */
+	public static void writeFile(String word[], String filePath) {
 
-		// Sort the integer
-		arr1 = sortInt(arr1);
-		arr2 = sortInt(arr2);
+		try {
+			FileWriter writer = new FileWriter(filePath, false);
+			PrintWriter out = new PrintWriter(writer);
+			for (int i = 0; i < word.length; i++) {
+				out.write(word[i] + " ");
+			}
+			out.close();
+			writer.close();
+		} catch (FileNotFoundException e) {
 
-		// check if digits are equal
-		for (int i = 0; i < arr1.length; i++) {
-			if (arr1[i] == arr2[i]) {
-				count++;
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+}
+	static {
+		random = new Random();
+	}
+
+	public static int generateRandom(int number) {
+		int randomnum;
+		randomnum = random.nextInt(number);
+		return randomnum;
+	}
+	public static int generateIndex()
+	{
+		
+		int index=Util.generateRandom(52);
+		for(int i=0;i<52;i++) {
+			if(array[i]==index) {
+				return(generateIndex());
 			}
 		}
-		return count == arr1.length;
-
+			
+				
+			
+				return index;
+					
+		
+	
+	
+		
+		
 	}
-	public static void convertIntArray(int[] array, int number) {
-		int i = 0;
-
-		while (number != 0) {
-			array[i] = number % 10;
-			number = number / 10;
-			i++;
-		}
-
-	}
-
-public static int numberCount(int number) {
-	int count = 0;
-	int tempno = number;
-
-	// find the number of digits of first number
-	while (tempno != 0) {
-		tempno = tempno / 10;
-		count++;
-
-	}
-	return count;
-
-}
-public static int[] sortInt(int[] array) {
-	int temp;
-
-	for (int i = 0; i < array.length; i++) {
-		for (int j = 1; j < array.length - i; j++) {
-			if (array[j - 1] > array[j]) {
-				temp = array[j - 1];
-				array[j - 1] = array[j];
-				array[j] = temp;
+	public static void shuffle(String suits[],String rank[]) {
+		Queue<Queue<String>> allplayers=new Queue<Queue<String>>();
+		Queue<String> queue;
+		String player[][]=new String[4][9];
+		String randomCard="";
+		String deck[]=new String[52];
+		int suitSelect=0;
+		int rankSelect=0;
+		int flag=0;
+	int k=0;
+	int m=0;
+			int index=0;
+		
+		for(int i=0;i<4;i++) {
+			for(int j=0;j<13;j++) {
+				deck[k++]=suits[i]+"-"+rank[j];
 			}
+			
 		}
+	
+		for(int i=0;i<4;i++) {
+			queue=new Queue<String>();
+			
+	 for(int j=0;j<9;j++)	{
+				
+				
+				index=Util.generateIndex();
+				array[m++]=index;
+			player[i][j]=deck[index];
+			queue.enqueueSort(deck[index]);
+				
+			
+			
+		}
+	 allplayers.enqueue(queue);
+		}
+		for(int i=0;i<4;i++) {
+			System.out.print((i+1)+"   player  ");
+			queue=allplayers.dequeue();
+			for (int j=0;j<9;j++) {
+		
+		System.out.println(queue.dequeue());
+			}
+			System.out.println("");
+		
 	}
+	}
+	public static void addAddressBook() {
+		JSONObject jsonobject=new JSONObject();
+		JSONObject jsonobject1=new JSONObject();
+	   JSONParser parser =new JSONParser();
+	   JSONArray array1=new JSONArray();
+	   try {
+		   JSONObject jobj = (JSONObject) parser.parse(new FileReader(addressbooks));
 
-	return array;
-}
+			JSONArray jarray = (JSONArray) jobj.get("addressbook");
+			System.out.println("enter the number of  names  to add");
+			int number = sc.nextInt();
+			for (int i = 0; i < number; i++) {
+				JSONObject temp = new JSONObject();
+				System.out.println("enter first name");
 
+				temp.put("firstname", sc.next());
+				System.out.println("enter last name");
 
-public static int removeDuplicates(int arr[], int n)
-{
-    // Return, if array is empty
-    // or contains a single element
-    if (n==0 || n==1)
-        return n;
- 
-    int[] temp = new int[n];
-    
-    // Start traversing elements
-    int j = 0;
-    for (int i=0; i<n-1; i++)
-        // If current element is not equal
-        // to next element then store that
-        // current element
-        if (arr[i] != arr[i+1])
-            temp[j++] = arr[i];
-    
-    // Store the last element as whether
-    // it is unique or repeated, it hasn't
-    // stored previously
-    temp[j++] = arr[n-1];   
-    
-    // Modify original array
-    for (int i=0; i<j; i++)
-        arr[i] = temp[i];
- 
-    return j;
-}
+				temp.put("lastname", sc.next());
+				System.out.println("enter address");
+
+				temp.put("address", sc.next());
+				System.out.println("enter city");
+
+				temp.put("city", sc.next());
+				System.out.println("enter state");
+
+				temp.put("state", sc.next());
+				
+				System.out.println("enter zipcode");
+				temp.put("zip", sc.nextInt());
+				System.out.println("enter phone number");
+				temp.put("phno", sc.nextInt());
+			array1.add(temp);
+			}
+		
+			jsonobject.put("addressbook", array1);
+			Util.appendFile(jsonobject1.toJSONString(), addressbooks);
+			
+		   
+	   } catch (ParseException ie1) {
+	        ie1.printStackTrace();
+	    } catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	}
+	
+	
+	public static void createAddressBook() {
+		JSONObject jsonobject=new JSONObject();
+		JSONObject jsonobject1=new JSONObject();
+		 JSONParser parser = new JSONParser();
+		JSONArray array1=new JSONArray();
+		JSONArray objectarray=new JSONArray();
+		JSONArray array=new JSONArray();
+		    
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(addressbooks)); 
+			if (br.readLine() != null ) {
+			   Util.addAddressBook();
+			   return;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("enter the number of  names  to add");
+		int number = sc.nextInt();
+		for (int i = 0; i < number; i++) {
+			JSONObject temp = new JSONObject();
+			System.out.println("enter first name");
+
+			temp.put("firstname", sc.next());
+			System.out.println("enter last name");
+
+			temp.put("lastname", sc.next());
+			System.out.println("enter address");
+
+			temp.put("address", sc.next());
+			System.out.println("enter city");
+
+			temp.put("city", sc.next());
+			System.out.println("enter state");
+
+			temp.put("state", sc.next());
+			
+			System.out.println("enter zipcode");
+			temp.put("zip", sc.nextInt());
+			System.out.println("enter phone number");
+			temp.put("phno", sc.nextInt());
+		array1.add(temp);
+		}
+		
+		jsonobject1.put("addressbook", array1);
+		Util.appendFile(jsonobject1.toJSONString(), addressbooks); 
+	}
+		
+	public static void editAddressBook(String name) {
+
+	int number;
+	String []valuelist={"address","city","state","zip","phno"};
+	System.out.println("1.address,2 city,3 state,4 zip,5 phno");
+	JSONArray addressArray=new JSONArray();
+	number=sc.nextInt();
+	System.out.println("enter value");
+	String cde=sc.next();
+		JSONParser parser = new JSONParser();
+		try {
+			  JSONObject arrayobject = (JSONObject) parser.parse(new FileReader(addressbooks));
+
+				JSONArray jarray = (JSONArray) arrayobject.get("addressbook");
+				for (Object name1 : jarray) {
+					JSONObject nameselect= (JSONObject) name1;
+					
+						if(nameselect.get("firstname").equals(name)) {
+							nameselect.replace(valuelist[number-1], cde);
+							System.out.println(nameselect.get(valuelist[number-1]));
+						}
+						
+					}
+
+				arrayobject.put("addressbook", jarray);
+				Util.appendFile(arrayobject.toJSONString(), addressbooks);
+			
+		 } catch (ParseException ie1) {
+	        ie1.printStackTrace();
+	    } catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	}
+	/*
+	public static void sortByName() {
+		JSONParser parser = new JSONParser();
+		int i=0;
+		
+		try {
+			  JSONObject arrayobject = (JSONObject) parser.parse(new FileReader(addressbooks));
+	
+				JSONArray jarray = (JSONArray) arrayobject.get("addressbook");
+				for (Object name1 : jarray) {
+					while(i<jarray.size()) {
+					Object temp;
+					JSONObject nameselect= (JSONObject) name1;
+					
+						if(((String) nameselect.get(i)).compareTo(nameselect.get(i+1))) {
+							nameselect.replace(valuelist[number-1], cde);
+							System.out.println(nameselect.get(valuelist[number-1]));
+						}
+						
+					}
+
+				arrayobject.put("addressbook", jarray);
+				Util.appendFile(arrayobject.toJSONString(), addressbooks);
+			
+		 } catch (ParseException ie1) {
+	        ie1.printStackTrace();
+	    } catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		
+	}*/
 }
