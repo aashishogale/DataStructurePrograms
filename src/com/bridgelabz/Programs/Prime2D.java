@@ -10,6 +10,10 @@ package com.bridgelabz.Programs;
 
 import com.bridgelabz.Utility.Util;
 
+/**
+ * @author Aashish
+ *
+ */
 public class Prime2D {
 	public static void main(String args[]) {
 		int[][] array = new int[10][100];
@@ -44,6 +48,7 @@ public class Prime2D {
 		for (int i = 0; i < 10; i++) {
 
 			for (int k = 0; k < 100; k++) {
+				if(array[i][k]!=0)
 				System.out.print(array[i][k] + " ");
 
 			}

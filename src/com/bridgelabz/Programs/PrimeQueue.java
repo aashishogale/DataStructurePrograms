@@ -10,6 +10,11 @@ package com.bridgelabz.Programs;
 
 import com.bridgelabz.Utility.Util;
 
+/**
+ * @author Aashish
+ *
+ */
+
 public class PrimeQueue {
 	public static void main(String args[]) {
 		Queue<Integer> queue = new Queue<Integer>();

@@ -8,6 +8,10 @@
 
 package com.bridgelabz.Programs;
 
+/**
+ * @author Aashish
+ *
+ */
 public class WeekDay {
 	String day;
 	String date;

@@ -11,6 +11,10 @@ package com.bridgelabz.Programs;
 import java.util.Scanner;
 
 
+/**
+ * @author Aashish
+ *
+ */
 
 public class Palindrome {
 

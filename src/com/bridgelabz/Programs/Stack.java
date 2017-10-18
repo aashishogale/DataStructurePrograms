@@ -12,6 +12,10 @@ import java.util.Scanner;
 
 import com.bridgelabz.Utility.SinglyLinkedListImpl;
 
+/**
+ * @author Aashish
+ *
+ */
 public class Stack<T> {
 	SinglyLinkedListImpl<T> list = new SinglyLinkedListImpl<>();
 

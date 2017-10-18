@@ -21,6 +21,10 @@ import java.util.Scanner;
 
 import com.bridgelabz.Utility.SinglyLinkedListImpl;
 
+/**
+ * @author Aashish
+ *
+ */
 public class HashSearch {
 	public static void main(String args[]) {
 		HashSearch hash = new HashSearch();

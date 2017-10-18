@@ -10,6 +10,10 @@ package com.bridgelabz.Programs;
 
 import com.bridgelabz.Utility.Util;
 
+/**
+ * @author Aashish
+ *
+ */
 public class PrimeAnagram {
 	public static void main(String args[]) {
 

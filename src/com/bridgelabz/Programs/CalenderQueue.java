@@ -8,17 +8,20 @@
 
 package com.bridgelabz.Programs;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-import com.bridgelabz.Utility.SinglyLinkedListImpl;
 import com.bridgelabz.Utility.Util;
 
+
+/**
+ * @author Aashish
+ *
+ */
 public class CalenderQueue {
 	public static void main(String args[]) {
 		CalenderQueue cqueue = new CalenderQueue();
 		Scanner scanner = new Scanner(System.in);
-		String daysOfWeek[] = { "S", "M", "T", "W", "Th", "F", "Sa" };
+		
 		Queue<Queue<String>> weekQueue = new Queue<Queue<String>>();
 		Stack weekStack = new Stack<>();
 		Stack monthStack = new Stack<>();
