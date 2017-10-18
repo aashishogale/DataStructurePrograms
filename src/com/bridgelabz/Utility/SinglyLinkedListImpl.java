@@ -1,3 +1,11 @@
+/***************************************************************************
+* Purpose : To create class for implementing linked list
+*
+* @author   Aashish
+* @version  1.0
+* @since    08-10-2017
+****************************************************************************/
+
 package com.bridgelabz.Utility;
 
 public class SinglyLinkedListImpl<T> {
@@ -5,11 +13,18 @@ public class SinglyLinkedListImpl<T> {
 	Node<T> tail;
 	static int count;
 
+	/**
+	 * purpose:add element to linked list
+	 * 
+	 * @param element
+	 * @return
+	 */
+
 	public void add(T element) {
 
 		Node<T> nd = new Node<T>();
 		nd.setValue(element);
-		//System.out.println("Adding: " + element);
+		// System.out.println("Adding: " + element);
 
 		if (head == null) {
 
@@ -23,8 +38,12 @@ public class SinglyLinkedListImpl<T> {
 		}
 	}
 
-	
-
+	/**
+	 * purpose:add element to the head
+	 * 
+	 * @param element
+	 * @return
+	 */
 	public void addFirst(T element) {
 
 		Node<T> tmp = head;
@@ -36,6 +55,11 @@ public class SinglyLinkedListImpl<T> {
 
 	}
 
+	/**
+	 * purpose:to view the linked list
+	 *
+	 * @return
+	 */
 	public void view() {
 		Node<T> tmp = new Node<T>();
 		tmp = head;
@@ -55,6 +79,11 @@ public class SinglyLinkedListImpl<T> {
 		System.out.println("List empty");
 	}
 
+	/**
+	 * purpose:to check if list is empty
+	 * 
+	 * @return
+	 */
 	public int checkEmpty() {
 		Node<T> tmp = head;
 		if (tmp == null)
@@ -62,6 +91,12 @@ public class SinglyLinkedListImpl<T> {
 		else
 			return 1;
 	}
+
+	/**
+	 * purpose:to delete the head
+	 *
+	 * @return tail node
+	 */
 
 	public T deleteFirst() {
 
@@ -72,16 +107,28 @@ public class SinglyLinkedListImpl<T> {
 		tmp = tmp.getNextRef();
 
 		head = tmp;
-		//System.out.println(refNode.getValue());
+		// System.out.println(refNode.getValue());
 		return refNode.getValue();
 
 	}
 
+	/**
+	 * purpose:delete tail element
+	 *
+	 * @return tail element
+	 */
 	public T deleteLast() {
 
 		return deleteAt(this.size() - 1);
 
 	}
+
+	/**
+	 * purpose delete at given postion
+	 * 
+	 * @param position
+	 * @return element
+	 */
 
 	public T deleteAt(int pos) {
 		Node<T> tmp = head;
@@ -146,6 +193,12 @@ public class SinglyLinkedListImpl<T> {
 
 	}
 
+	/**
+	 * purpose:delete given element
+	 * 
+	 * @param element
+	 * @return value
+	 */
 	public T deleteElement(T element) {
 		Node<T> tmp = head;
 		Node<T> refNode = head;
@@ -195,7 +248,7 @@ public class SinglyLinkedListImpl<T> {
 			} else {
 				next = tmp.getNextRef();
 				prev.setNextRef(next);
-
+				System.out.println("deleted tail value" + tmp.getValue());
 				return tmp.getValue();
 
 			}
@@ -206,6 +259,13 @@ public class SinglyLinkedListImpl<T> {
 		}
 
 	}
+
+	/**
+	 * purpose:add element at given positon
+	 * 
+	 * @param number,position
+	 * @return
+	 */
 
 	public void insertAt(T number, int pos) {
 		Node<T> tmp = head;
@@ -260,12 +320,6 @@ public class SinglyLinkedListImpl<T> {
 				prev.setNextRef(tmp1);
 				tmp1.setNextRef(next);
 
-				System.out.println(prev.getValue());
-
-				System.out.println(tmp1.getValue());
-
-				System.out.println(next.getValue());
-
 			}
 		}
 
@@ -275,9 +329,16 @@ public class SinglyLinkedListImpl<T> {
 
 	}
 
+	/**
+	 * purpose:search for givent element
+	 * 
+	 * @param element
+	 * @return true or false
+	 */
+
 	public int traverse(T element) {
 		Node<T> tmp = head;
-		
+
 		int flag = 0;
 
 		while (true) {
@@ -318,6 +379,12 @@ public class SinglyLinkedListImpl<T> {
 		}
 	}
 
+	/**
+	 * purpose:find the item at given positon
+	 * 
+	 * @param positon
+	 * @return element
+	 */
 	public T returnItem(int pos) {
 		Node<T> tmp = head;
 		int count = 0;
@@ -335,6 +402,12 @@ public class SinglyLinkedListImpl<T> {
 
 	}
 
+	/**
+	 * purpose:to return the positon withn a sorted a linked list
+	 * 
+	 * @param element
+	 * @return position
+	 */
 
 	public int returnPos(T element) {
 		Node<T> tmp = head;
@@ -367,14 +440,17 @@ public class SinglyLinkedListImpl<T> {
 
 	}
 
-	
-	
+	/**
+	 * purpose:to find the index of the given element
+	 * 
+	 * @param element
+	 * @return position
+	 */
 	public int findIndex(T element) {
 		Node<T> tmp = head;
 
 		int i = 0;
 		int flag = 0;
-	
 
 		while (true) {
 			if (tmp == null) {
@@ -383,7 +459,6 @@ public class SinglyLinkedListImpl<T> {
 
 			}
 
-			
 			if (tmp.getValue().equals(element)) {
 				return i;
 
@@ -400,6 +475,12 @@ public class SinglyLinkedListImpl<T> {
 
 	}
 
+	/**
+	 * purpose:to return the size of linked list
+	 * 
+	 * @param
+	 * @return count
+	 */
 	public int size() {
 		// TODO Auto-generated method stub
 
@@ -423,7 +504,7 @@ public class SinglyLinkedListImpl<T> {
 			}
 
 		}
-		//System.out.println("size in method" + count);
+		// System.out.println("size in method" + count);
 		return count;
 	}
 
@@ -434,18 +515,44 @@ class Node<T> {
 	T value;
 	Node<T> nextRef;
 
+	/**
+	 * purpose:return current value
+	 * 
+	 * @param
+	 * @return value
+	 */
+
 	public T getValue() {
 		return value;
 	}
+
+	/**
+	 * purpose:set the value
+	 * 
+	 * @param value
+	 * @return
+	 */
 
 	public void setValue(T value) {
 		this.value = value;
 	}
 
+	/**
+	 * purpose:set the next node
+	 * 
+	 * @param
+	 * @return nextRef
+	 */
 	public Node<T> getNextRef() {
 		return nextRef;
 	}
 
+	/**
+	 * purpose:set the next ref
+	 * 
+	 * @param ref
+	 * @return
+	 */
 	public void setNextRef(Node<T> ref) {
 		this.nextRef = ref;
 	}

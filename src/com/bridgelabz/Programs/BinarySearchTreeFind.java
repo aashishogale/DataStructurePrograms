@@ -1,17 +1,24 @@
+/***************************************************************************
+* Purpose : To create class for finding all binary search tree combinations
+*
+* @author   Aashish
+* @version  1.0
+* @since    08-10-2017
+****************************************************************************/
+
 package com.bridgelabz.Programs;
 
 import java.util.Scanner;
 import com.bridgelabz.Utility.Util;
 
 public class BinarySearchTreeFind {
-	public static void main (String args[]) {
-		Scanner sc =new Scanner(System.in);
+	public static void main(String args[]) {
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("enter number");
-		int number=Integer.parseInt(sc.nextLine());
-		long result=Util.possibleCombinations(number);
+		int number = Integer.parseInt(scanner.nextLine());
+		long result = Util.possibleCombinations(number);
 		System.out.println(result);
-		
+		scanner.close();
 	}
-	
 
 }

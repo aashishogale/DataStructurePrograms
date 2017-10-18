@@ -1,3 +1,11 @@
+/***************************************************************************
+* Purpose : To create class creating ordered list
+*
+* @author   Aashish
+* @version  1.0
+* @since    08-10-2017
+****************************************************************************/
+
 package com.bridgelabz.Programs;
 
 import java.io.BufferedReader;
@@ -14,9 +22,9 @@ public class OrderedList {
 		int number;
 		char next;
 		int count = 1;
-		ListImpl list=new ListImpl();
+		ListImpl list = new ListImpl();
 
-		Scanner sc = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 
 		BufferedReader breader;
 		try {
@@ -29,22 +37,25 @@ public class OrderedList {
 				narray[i] = Integer.parseInt(array[i]);
 
 			}
+			list.sort(narray);
 			list.addOrderedInt(narray);
 			do {
 				System.out.println("enter the number");
 
-				number = Integer.parseInt(sc.nextLine());
+				number = Integer.parseInt(scanner.nextLine());
 				count = list.addOrderedList(number);
-				// list.showCurrentList();
+			
 				System.out.println("do you want to continue");
-				next = sc.nextLine().charAt(0);
-				// System.out
+				next = scanner.nextLine().charAt(0);
+				
 
 			} while (next != 'n');
-			
+
 			String[] sarray = new String[count];
-			list.getList(sarray, count);
-			sc.close();
+			
+			list.getOrderedList();
+		
+			scanner.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
