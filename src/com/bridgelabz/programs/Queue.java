@@ -6,9 +6,9 @@
 * @since    08-10-2017
 ****************************************************************************/
 
-package com.bridgelabz.Programs;
+package com.bridgelabz.programs;
 
-import com.bridgelabz.Utility.SinglyLinkedListImpl;
+import com.bridgelabz.utility.SinglyLinkedListImpl;
 
 /**
  * @author Aashish

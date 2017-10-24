@@ -6,7 +6,7 @@
 * @since    08-10-2017
 ****************************************************************************/
 
-package com.bridgelabz.Programs;
+package com.bridgelabz.programs;
 
 /**
  * @author Aashish

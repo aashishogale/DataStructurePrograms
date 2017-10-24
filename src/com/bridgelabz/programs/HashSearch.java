@@ -6,7 +6,7 @@
 * @since    08-10-2017
 ****************************************************************************/
 
-package com.bridgelabz.Programs;
+package com.bridgelabz.programs;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 import java.util.Scanner;
 
-import com.bridgelabz.Utility.SinglyLinkedListImpl;
+import com.bridgelabz.utility.SinglyLinkedListImpl;
 
 /**
  * @author Aashish

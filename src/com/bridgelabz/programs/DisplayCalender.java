@@ -5,11 +5,11 @@
 * @since    08-10-2017
 ****************************************************************************/
 
-package com.bridgelabz.Programs;
+package com.bridgelabz.programs;
 
 import java.util.Scanner;
 
-import com.bridgelabz.Utility.Util;
+import com.bridgelabz.utility.Util;
 
 /**
  * @author Aashish

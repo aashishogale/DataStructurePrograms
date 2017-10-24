@@ -6,7 +6,7 @@
 * @since    08-10-2017
 ****************************************************************************/
 
-package com.bridgelabz.Programs;
+package com.bridgelabz.programs;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -14,7 +14,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import com.bridgelabz.Utility.ListImpl;
+import com.bridgelabz.utility.ListImpl;
 
 /**
  * @author Aashish

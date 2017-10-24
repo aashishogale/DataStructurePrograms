@@ -6,7 +6,7 @@
 * @since    08-10-2017
 ****************************************************************************/
 
-package com.bridgelabz.Utility;
+package com.bridgelabz.utility;
 
 public class Util {
 

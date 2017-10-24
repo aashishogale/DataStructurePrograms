@@ -1,4 +1,4 @@
-package com.bridgelabz.Programs;
+package com.bridgelabz.programs;
 
 /**
  * @author Aashish

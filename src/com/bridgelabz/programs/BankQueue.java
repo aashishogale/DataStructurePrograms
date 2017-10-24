@@ -5,7 +5,7 @@
 * @version  1.0
 * @since    08-10-2017
 ****************************************************************************/
-package com.bridgelabz.Programs;
+package com.bridgelabz.programs;
 
 import java.util.Scanner;
 

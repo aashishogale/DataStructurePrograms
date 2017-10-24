@@ -6,12 +6,13 @@
 * @since    08-10-2017
 ****************************************************************************/
 
-package com.bridgelabz.Utility;
+package com.bridgelabz.utility;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import com.bridgelabz.Utility.SinglyLinkedListImpl;
+
+import com.bridgelabz.utility.SinglyLinkedListImpl;
 
 public class ListImpl<T> {
 
