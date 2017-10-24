@@ -17,7 +17,7 @@ import com.bridgelabz.utility.SinglyLinkedListImpl;
  *
  */
 public class Stack<T> {
-	SinglyLinkedListImpl<T> list = new SinglyLinkedListImpl<>();
+	public SinglyLinkedListImpl<T> list = new SinglyLinkedListImpl<>();
 
 	/**
 	 * purpose:push the element

@@ -21,7 +21,7 @@ import com.bridgelabz.utility.ListImpl;
  *
  */
 public class UnorderedList {
-	static ListImpl list = new ListImpl();
+	public static ListImpl list = new ListImpl();
 
 	public static void main(String args[]) {
 

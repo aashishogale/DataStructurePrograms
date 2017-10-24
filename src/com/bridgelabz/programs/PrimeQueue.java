@@ -17,23 +17,19 @@ import com.bridgelabz.utility.Util;
 
 public class PrimeQueue {
 	public static void main(String args[]) {
-		Queue<Integer> queue = new Queue<Integer>();
+		 Queue<Integer> queue = new Queue<Integer>();
 		for (int i = 0; i < 1000; i++) {
 
-			if (Util.checkPrime(i)) {
-				for (int j = i + 1; j < 1000; j++) {
-					if (Util.checkPrime(j)) {
-						if (Util.checkAnagram(i, j)) {
-							
-							queue.enqueueDistinct(i);
-							queue.enqueueDistinct(j);
+			for (int j = i + 1; j < 1000; j++) {
+				if (Util.checkPrime(i) && Util.checkPrime(j) && Util.checkAnagram(i, j)) {
 
-						}
-
-					}
+					queue.enqueueDistinct(i);
+					queue.enqueueDistinct(j);
 
 				}
+
 			}
+
 		}
 
 		queue.display();

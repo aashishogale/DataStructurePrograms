@@ -142,7 +142,7 @@ public class SinglyLinkedListImpl<T> {
 				break;
 			}
 
-			if (count==pos && !tmp.equals(head)) {
+			if (count == pos && !tmp.equals(head)) {
 
 				refNode = tmp;
 
@@ -226,7 +226,7 @@ public class SinglyLinkedListImpl<T> {
 
 		if (refNode != null) {
 
-			if (refNode == head) {
+			if (refNode.equals(head)) {
 				T value = refNode.getValue();
 				tmp = refNode.getNextRef();
 
